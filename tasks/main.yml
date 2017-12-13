@@ -23,6 +23,13 @@
   tags:
     - install
 
+- name: Install Multifactor
+  include_tasks: multifactor.yml
+  when: multifactor
+  tags:
+    - install
+    - multifactor
+
 - name: Copy or Generate server keys
   include_tasks: server_keys.yml
   tags:
@@ -69,3 +76,4 @@
   include_tasks: config.yml
   tags:
     - configure
+

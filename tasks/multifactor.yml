@@ -1,0 +1,5 @@
+---
+- name: Install libqrencode
+  package:
+    name: qrencode
+    state: present
