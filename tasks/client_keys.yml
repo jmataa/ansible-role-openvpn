@@ -67,3 +67,28 @@
     dest: "/tmp/ansible/{{item}}/{{inventory_hostname}}.ovpn"
     flat: yes
   with_items: "{{clients}}"
+
+- name: generate client multifactor token
+  shell: "google-authenticator -t -f -d -u -w 2 -l \"{{item}}@{{inventory_hostname}}\" -s \"/home/{{item}}/.google_authenticator\" | head -n 1 > /home/{{item}}/.google_authenticator_secret_url "
+  when: multifactor
+  with_items: "{{clients}}"
+  args:
+    creates: "/home/{{item}}/.google_authenticator"
+
+- name: protect client multifactor token
+  file:
+    path: "/home/{{item}}/.google_authenticator"
+    mode: 0400
+    owner: "{{item}}"
+    group: "{{item}}"
+  with_items: "{{clients}}"
+  when: multifactor
+
+- name: protect client multifactor secret url
+  file:
+    path: "/home/{{item}}/.google_authenticator_secret_url"
+    mode: 0400
+    owner: "{{item}}"
+    group: "{{item}}"
+  with_items: "{{clients}}"
+  when: multifactor

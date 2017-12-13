@@ -3,3 +3,16 @@
   package:
     name: qrencode
     state: present
+
+- name: Install google-authenticator
+  package:
+    name: google-authenticator
+    state: present
+
+- name: Openvpn Pam Configuration
+  template:
+    src: pam.d.j2
+    dest: "/etc/pam.d/openvpn"
+    owner: root
+    group: root
+    mode: 0400
