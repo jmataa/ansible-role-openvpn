@@ -53,9 +53,9 @@
 - name: generate client config
   template:
     src: client.ovpn.j2
-    dest: "{{ openvpn_base_dir }}/{{item.0.item}}-{{inventory_hostname}}.ovpn"
-    owner: root
-    group: root
+    dest: "/home/{{item.0.item}}/{{item.0.item}}.ovpn"
+    owner: "{{item.0.item}}"
+    group: "{{item.0.item}}"
     mode: 0400
   with_together:
     - "{{client_certs.results}}"
