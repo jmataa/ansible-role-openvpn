@@ -25,6 +25,7 @@ tls-server
 auth SHA256
 {% if multifactor %}
 plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
+reneg-sec 0
 {% endif %}
 
 cipher AES-256-CBC
