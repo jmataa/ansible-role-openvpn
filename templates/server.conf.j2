@@ -24,7 +24,6 @@ tls-auth {{openvpn_key_dir}}/ta.key 0
 tls-server
 auth SHA256
 {% if multifactor %}
-# FIXME figure out how to find this file for centos / redhat / ubuntu
 plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
 {% endif %}
 
