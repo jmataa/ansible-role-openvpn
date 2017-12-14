@@ -23,6 +23,11 @@ tls-auth {{openvpn_key_dir}}/ta.key 0
 {% endif %}
 tls-server
 auth SHA256
+{% if multifactor %}
+# FIXME figure out how to find this file for centos / redhat / ubuntu
+plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
+{% endif %}
+
 cipher AES-256-CBC
 {% if openvpn_use_modern_tls|bool %}
 {# Using Mozilla's modern cipher list + DHE for older clients #}

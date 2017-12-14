@@ -7,6 +7,9 @@ remote-cert-tls server
 {% if openvpn_use_modern_tls %}
 tls-version-min 1.2
 {% endif %}
+{% if multifactor %}
+auth-user-pass
+{% endif %}
 
 proto {{openvpn_proto}}
 remote {{openvpn_server_hostname}} {{openvpn_port}}

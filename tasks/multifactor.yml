@@ -1,4 +1,5 @@
 ---
+# useful for installing and managing server side qr codes, not explictly required but helpful
 - name: Install libqrencode
   package:
     name: qrencode
@@ -11,7 +12,7 @@
 
 - name: Openvpn Pam Configuration
   template:
-    src: pam.d.j2
+    src: pam_openvpn.j2
     dest: "/etc/pam.d/openvpn"
     owner: root
     group: root

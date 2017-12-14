@@ -48,4 +48,7 @@ ldap:
   group_base_dn: ou=Groups,dc=example,dc=com
   group_search_filter: (|(cn=developers)(cn=artists))
 
-multifactor: true
+# multifactor currently requires the clients to also be users, and the client list names
+# must match users exactly, this is so the google auth pam module
+# can read /home/user/.google_authenticator when the user submits a token for login
+multifactor: false
