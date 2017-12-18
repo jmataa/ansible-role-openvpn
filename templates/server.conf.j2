@@ -23,10 +23,6 @@ tls-auth {{openvpn_key_dir}}/ta.key 0
 {% endif %}
 tls-server
 auth SHA256
-{% if multifactor %}
-plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
-reneg-sec 0
-{% endif %}
 
 cipher AES-256-CBC
 {% if openvpn_use_modern_tls|bool %}
@@ -93,4 +89,9 @@ plugin /usr/lib64/openvpn/plugin/lib/openvpn-auth-ldap.so "{{ openvpn_base_dir }
 plugin /usr/lib/openvpn/plugin/lib/openvpn-auth-ldap.so "{{ openvpn_base_dir }}/auth/ldap.conf"
 {% endif %}
 client-cert-not-required
+{% endif %}
+
+{% if multifactor %}
+plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
+reneg-sec 0
 {% endif %}
