@@ -10,6 +10,7 @@ tls-version-min 1.2
 {% if multifactor %}
 auth-user-pass
 auth-nocache
+reneg-sec 0
 {% endif %}
 
 proto {{openvpn_proto}}
