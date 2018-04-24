@@ -70,7 +70,7 @@
   when: multifactor == false
 
 - name: generate client multifactor token
-  shell: "google-authenticator -t -f -d -u -w 2 -l \"{{item}}@{{inventory_hostname}}\" -s \"/home/{{item}}/.google_authenticator\" | head -n 1 > /home/{{item}}/.google_authenticator_secret_url "
+  shell: "google-authenticator -t -f -d -u -w 2 -l \"{{item}}@{{inventory_hostname}}\" -s \"/home/{{item}}/.google_authenticator\" > /home/{{item}}/.google_authenticator_secret_url "
   when: multifactor
   with_items: "{{clients}}"
   args:
