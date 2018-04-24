@@ -67,6 +67,7 @@
     dest: "/tmp/ansible/{{item}}/{{inventory_hostname}}.ovpn"
     flat: yes
   with_items: "{{clients}}"
+  when: multifactor == false
 
 - name: generate client multifactor token
   shell: "google-authenticator -t -f -d -u -w 2 -l \"{{item}}@{{inventory_hostname}}\" -s \"/home/{{item}}/.google_authenticator\" | head -n 1 > /home/{{item}}/.google_authenticator_secret_url "
